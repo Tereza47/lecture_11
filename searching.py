@@ -57,14 +57,27 @@ def pattern_search(sequence, pattern):
     left_end = 0
     my_set = {}
     my_set = set(my_set)
-    n = 0
-    while n < len(sequence) - width:
-        seq_pattern = sequence[left_end:left_end+width]
-        if seq_pattern == pattern:
+    right_end = left_end + width
+
+    while right_end < len(sequence):
+        for idx_p in range(width):
+            if pattern[idx_p] != sequence[left_end + idx_p]:
+                break
+        else:
             position = left_end + width // 2
             my_set.add(position)
-        n += 1
+
         left_end += 1
+        right_end += 1
+
+   # while n < len(sequence) - width:
+   #     seq_pattern = sequence[left_end:left_end+width]
+   #     if seq_pattern == pattern:
+   #         position = left_end + width // 2
+   #         my_set.add(position)
+   #     n += 1
+   #     left_end += 1
+
     return my_set
 
 
