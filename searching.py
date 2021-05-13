@@ -45,11 +45,37 @@ def linear_search(seqence, number):
     return dictionary
 
 
+def pattern_search(sequence, pattern):
+    """
+
+    :param sequence:
+    :param pattern:
+    :return:
+    """
+
+    width = len(pattern)
+    left_end = 0
+    my_set = {}
+    my_set = set(my_set)
+    n = 0
+    while n < len(sequence) - width:
+        seq_pattern = sequence[left_end:left_end+width]
+        if seq_pattern == pattern:
+            position = left_end + width // 2
+            my_set.add(position)
+        n += 1
+        left_end += 1
+    return my_set
+
+
 def main():
     file_name = 'sequential.json'
     seq = read_data(file_name, "unordered_numbers")
     dict = linear_search(seq, 0)
-    print(dict)
+    seq = read_data(file_name, 'dna_sequence')
+    my_set = pattern_search(seq, 'ATA')
+
+    print(my_set)
 
 
 if __name__ == '__main__':
